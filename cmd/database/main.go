@@ -1,15 +1,17 @@
+// This file is temporary and will be deleted along with the cmd/database folder
 package main
 
 import (
-	"log"
-
 	"github.com/freedom-sketch/project-noob/internal/database"
+	"github.com/freedom-sketch/project-noob/internal/logger"
 )
 
 func main() {
-	err := database.Connect()
-	if err != nil {
+	log, _ := logger.New("database.log")
+
+	if err := database.Connect(); err != nil {
 		log.Fatal("Connect failed:", err)
 	}
-	log.Println("✅ Database file created successfully")
+
+	log.Info("✅ Successful connection to the database")
 }
