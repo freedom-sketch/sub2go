@@ -2,12 +2,24 @@
 package main
 
 import (
+	"log"
+
+	"github.com/freedom-sketch/sub2go/config"
 	"github.com/freedom-sketch/sub2go/internal/database"
 	"github.com/freedom-sketch/sub2go/internal/logger"
 )
 
 func main() {
-	log, _ := logger.New("database.log")
+	cfg, err := config.Load("./config.json")
+	if err != nil {
+		log.Fatal("Failed to load config")
+	}
+
+	err = logger.Init(cfg.Logging)
+	if err != nil {
+		log.Fatal("Failed to initialize logging")
+	}
+	log := logger.Log
 
 	if err := database.Connect(); err != nil {
 		log.Fatal("Connect failed:", err)
