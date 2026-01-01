@@ -11,7 +11,7 @@ func Load(path string) (Config, error) {
 		return Config{}, err
 	}
 
-	cfg := defaultConfig
+	cfg := Config{}
 
 	if err := json.Unmarshal(data, &cfg); err != nil {
 		return cfg, err
