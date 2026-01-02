@@ -11,8 +11,7 @@ func Connect() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	err = AutoMigrate(db)
-	if err != nil {
+	if err := AutoMigrate(db); err != nil {
 		return nil, err
 	}
 
