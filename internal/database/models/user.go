@@ -3,7 +3,6 @@ package models
 import "time"
 
 type User struct {
-	ID        uint      `gorm:"primaryKey;autoIncrement"`
 	UserID    int64     `gorm:"column:user_id;unique;not null;index"`
 	CreatedAt time.Time `gorm:"autoCreateTime"`
 

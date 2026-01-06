@@ -11,7 +11,7 @@ import (
 var Log *log.Logger
 var logFile *os.File
 
-func Init(cfg config.Logging) error {
+func Init(cfg *config.Logging) error {
 	if err := os.MkdirAll("logs", 0755); err != nil {
 		return err
 	}

@@ -19,8 +19,13 @@ type Logging struct {
 	Level    string `json:"level"`
 }
 
+type DataBase struct {
+	Name string `json:"name"`
+}
+
 type Config struct {
 	API          API          `json:"api"`
 	Subscription Subscription `json:"subscription"`
 	Logging      Logging      `json:"logging"`
+	DataBase     DataBase     `json:"data-base"`
 }

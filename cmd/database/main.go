@@ -16,7 +16,7 @@ func main() {
 		log.Fatal("Failed to load config", err)
 	}
 
-	err = logger.Init(cfg.Logging)
+	err = logger.Init(&cfg.Logging)
 	if err != nil {
 		log.Fatal("Failed to initialize logging", err)
 	}

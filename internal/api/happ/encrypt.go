@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-const encryptionURL = "https://crypto.happ.su/api.php"
+var encryptionURL = "https://crypto.happ.su/api.php"
 
 // Encrypts a string using RSA-4096
 func Encrypt(plaintext string) (string, error) {
