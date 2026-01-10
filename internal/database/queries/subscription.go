@@ -28,7 +28,7 @@ func GetSubscriptionByUserUUID(ctx context.Context, db *gorm.DB, userUUID string
 
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return nil, nil // или return nil, fmt.Errorf("subscription not found") — по вкусу
+			return nil, nil
 		}
 		return nil, err
 	}
@@ -74,16 +74,14 @@ func ExtendSubscription(ctx context.Context, db *gorm.DB, userUUID string, days 
 
 	newEndDate := sub.EndDate.AddDate(0, 0, days)
 
-	result := db.WithContext(ctx).
-		Model(&sub).
-		Update("end_date", newEndDate)
+	result := db.WithContext(ctx).Model(&sub).Update("end_date", newEndDate)
 
 	if result.Error != nil {
 		return result.Error
 	}
 
 	if result.RowsAffected == 0 {
-		return fmt.Errorf("subscription was not updated (possibly concurrent modification)")
+		return fmt.Errorf("subscription was not updated")
 	}
 
 	return nil

@@ -6,8 +6,8 @@ import (
 	"gorm.io/gorm"
 )
 
-func Connect(cfg *config.Config) (*gorm.DB, error) {
-	db, err := gorm.Open(sqlite.Open(cfg.DataBase.Name+".db"), &gorm.Config{})
+func Connect(cfg *config.DataBase) (*gorm.DB, error) {
+	db, err := gorm.Open(sqlite.Open(cfg.Name+".db"), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}

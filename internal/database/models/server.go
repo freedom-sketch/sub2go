@@ -1,18 +1,17 @@
 package models
 
-type Server struct {
-	ID          uint   `gorm:"primaryKey;autoIncrement"`
-	IPAddress   string `gorm:"column:ip_address;type:text;not null"`
-	Port        int    `gorm:"default:4443"`
-	PanelURL    string `gorm:"column:panel_url;type:text"`
-	InboundID   int    `gorm:"default:1"`
-	Login       string `gorm:"type:text"`
-	Password    string `gorm:"type:text"`
-	IsActive    bool   `gorm:"default:true;index"`
-	CountryID   uint   `gorm:"not null;constraint:OnDelete:CASCADE"`
-	Description string `gorm:"type:text"`
+import "time"
 
-	Country Country `gorm:"foreignKey:CountryID"`
+type Server struct {
+	ID          uint      `gorm:"primaryKey;autoIncrement"`
+	Name        string    `gorm:"uniqueIndex;not null"`
+	Host        string    `gorm:"not null"`
+	IsActive    bool      `gorm:"default:true;index"`
+	Description string    `gorm:"type:text"`
+	CreatedAt   time.Time `gorm:"autoCreateTime"`
+	UpdatedAt   time.Time `gorm:"autoUpdateTime"`
+
+	Inbounds []Inbound `gorm:"foreignKey:ServerID"`
 }
 
 func (Server) TableName() string {

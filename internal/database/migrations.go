@@ -10,7 +10,7 @@ func AutoMigrate(db *gorm.DB) error {
 		&models.User{},
 		&models.Admin{},
 		&models.Subscription{},
-		&models.Country{},
 		&models.Server{},
+		&models.Inbound{},
 	)
 }
