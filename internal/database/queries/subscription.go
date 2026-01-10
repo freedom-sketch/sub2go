@@ -50,7 +50,9 @@ func IsSubscriptionActive(ctx context.Context, db *gorm.DB, userUUID string) (bo
 		return false, err
 	}
 
-	return time.Now().Before(sub.EndDate), nil
+	result := time.Now().Before(sub.EndDate) && sub.IsActive
+
+	return result, nil
 }
 
 // ExtendSubscription extends the subscription by the specified number of days
